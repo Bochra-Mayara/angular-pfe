@@ -1,0 +1,13 @@
+/* CSS */
+#logo-sidebar {
+    transition: transform 0.3s ease;
+  }
+  
+  #logo-sidebar.hidden {
+    transform: translateX(-100%);
+  }
+  
+  #logo-sidebar:hover {
+    transform: translateX(0);
+  }
+  

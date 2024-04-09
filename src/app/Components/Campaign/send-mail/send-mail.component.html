@@ -1,0 +1,26 @@
+<div ng-controller="MailController" class="bg-gray-100 h-screen flex justify-center items-center">
+    <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-1/2 focus:shadow-outline">
+        <p class="text-center mt-10 mb-4 text-lg font-bold">Create a regular email</p>
+        <form ng-submit="submitMailContact()">
+            <div class="mb-4">
+                <label for="to" class="block text-gray-700 text-sm font-bold mb-2">To:</label>
+                <input id="to" type="text" ng-model="mailContact.to" required class=" appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none " placeholder="Recipient">
+            </div>
+            <div class="mb-4">
+                <label for="from" class="block text-gray-700 text-sm font-bold mb-2">From:</label>
+                <input id="from" type="text" ng-model="mailContact.from" required class=" appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none" placeholder="Sender">
+            </div>
+            <div class="mb-4">
+                <label for="subject" class="block text-gray-700 text-sm font-bold mb-2">Subject:</label>
+                <input id="subject" type="text" ng-model="mailContact.subject" required class=" appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none" placeholder="Subject">
+            </div>
+            <div class="mb-4">
+                <label for="message" class="block text-gray-700 text-sm font-bold mb-2">Message:</label>
+                <textarea id="message" ng-model="mailContact.message" rows="5" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none " placeholder="Message"></textarea>
+            </div>
+            <div class="flex items-center justify-between">
+                <button type="submit" class="px-10 py-2 bg-orange-500 text-white rounded hover:bg-orange-600">Send Mail Marketing</button>
+            </div>
+        </form>
+    </div>
+</div>
