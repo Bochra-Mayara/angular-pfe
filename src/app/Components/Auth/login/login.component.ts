@@ -26,24 +26,28 @@ export class LoginComponent implements OnInit {
       password: ['', [Validators.required]],
 
     });
+
+
+    if (typeof localStorage !== 'undefined' && localStorage.getItem('jwt') !== null) {
+      this.router.navigateByUrl('/dashboard');
+    }
   }
 
   submitLoginForm() {
-   // submitLoginForm() {
-    console.log("bochra")
-    this. JwtAuthService.login(this.signinForm.value).subscribe(
-      (response)=>{
-        
+    console.log("bochra");
+    this.JwtAuthService.login(this.signinForm.value).subscribe(
+      (response) => {
         console.log(response);
-        if(response.access_token !=null){
+        if (response.access_token != null && typeof localStorage !== 'undefined') {
           const jwtToken = response.access_token;
-          localStorage.setItem('jwt',jwtToken);
-          this.router.navigateByUrl("/emails")
-         
+          localStorage.setItem('jwt', jwtToken);
+          this.router.navigateByUrl('/dashboard');
         }
+      },
+      (error) => {
+        // Handle login error
+        console.error('Login failed:', error);
       }
-    )
-
-
+    );
   }
 }

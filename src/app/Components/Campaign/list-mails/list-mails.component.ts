@@ -19,9 +19,28 @@ export class ListMailsComponent implements OnInit{
   ngOnInit(): void {
     this.loadEmails();
   }
-
+  getToken(): string | null {
+    if (typeof localStorage !== 'undefined') {
+      return localStorage.getItem('jwt');
+    } else {
+      console.error('localStorage is not available.');
+      return null;
+    }
+  }
+  
+  
   loadEmails(): void {
-    this.http.get<any[]>('/api/v1/mailService/allEmails').subscribe(
+    const token = this.getToken();
+    if (!token) {
+      console.error('Token not found in localStorage');
+      return;
+    }
+  
+    const headers = {
+      Authorization: `Bearer ${token}`
+    };
+  
+    this.http.get<any[]>('/api/v1/mailService/allEmails', { headers }).subscribe(
       emails => {
         this.emails = emails;
         this.totalItems = this.emails.length;
@@ -31,6 +50,7 @@ export class ListMailsComponent implements OnInit{
       }
     );
   }
+  
 
 
   getPaginatedEmails(): any[] {
