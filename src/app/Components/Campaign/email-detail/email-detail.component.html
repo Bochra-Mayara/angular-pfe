@@ -1,0 +1,8 @@
+<div *ngIf="emailDetails" class="p-4 border border-gray-300 rounded-md">
+    <h2 class=" flex justify-center text-center mt-10 mb-4 text-lg font-bold">Email Details</h2>
+    <p class="mb-1"><strong style="color: #4f46e5">ID:</strong> {{ emailDetails.id }}</p>
+    <p class="mb-1"><strong style="color: #4f46e5">From:</strong> {{ emailDetails.from }}</p>
+    <p class="mb-1"><strong style="color: #4f46e5">To:</strong> {{ emailDetails.to }}</p>
+    <p class="mb-1"><strong style="color: #4f46e5">Subject:</strong> {{ emailDetails.subject }}</p>
+    <p class="mb-1"><strong style="color: #4f46e5">Message:</strong> {{ emailDetails.message }}</p>
+</div>

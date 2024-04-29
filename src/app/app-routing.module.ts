@@ -11,6 +11,7 @@ import { ProfileComponent } from './Components/profile/profile.component';
 import { CreateCampaignComponent } from './Components/Campaign/create-campaign.component';
 import { SendMailComponent } from './Components/Campaign/send-mail/send-mail.component';
 import { ListMailsComponent } from './Components/Campaign/list-mails/list-mails.component';
+import { EmailDetailComponent } from './Components/Campaign/email-detail/email-detail.component';
 
 
 
@@ -26,6 +27,8 @@ const routes: Routes = [
   {path:"createCampaign",component:CreateCampaignComponent},
   {path:"sendMail",component: SendMailComponent},
   {path:"listMail",component: ListMailsComponent},
+  { path: 'email/:id', component: EmailDetailComponent },
+
   { path: '',   redirectTo: '/login', pathMatch: 'full' }, // redirect to `first-component`
 
 

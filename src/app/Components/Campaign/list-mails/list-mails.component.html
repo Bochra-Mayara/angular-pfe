@@ -13,10 +13,19 @@
 
 
 <div class="flex justify-between mt-4">
-    <a routerLink="/sendMail" class="block text-md px-4 py-1 rounded text-blue-700 font-bold hover:text-white hover:bg-blue-700">Add New Email</a>
-   
-    <a routerLink="/dashboard" class="block text-md px-4 py-1 rounded text-blue-700 font-bold hover:text-white hover:bg-blue-700">Back to the Dashboard</a>
+    <a routerLink="/sendMail" class="block text-md px-4 py-1 rounded text-blue-700 font-bold hover:text-white  hover:bg-blue-500">Add New Email</a>
+    
+    <!-- Search input field and button -->
+    <div class="flex items-center">
+        <input type="text" placeholder="Search..." class="px-4 py-1 rounded border border-gray-900 focus:outline-none focus:border-blue-700" style="width: 300px;">
+
+        <button type="submit" class="ml-2 px-4 py-1 rounded bg-indigo-600 text-white font-bold hover:bg-indigo-500" style="width: 120px;">Search</button>
+
+    </div>
+    
+    <a routerLink="/dashboard" class="block text-md px-4 py-1 rounded text-blue-700 font-bold hover:text-white hover:bg-blue-500">Back to the Dashboard</a>
 </div>
+
 
 
 <div class="p-5 h-screen bg-white-100 mt-1">
@@ -42,24 +51,31 @@
             </thead>
             <tbody class="divide-y divide-gray-100">
                 <tr *ngFor="let email of getPaginatedEmails()">
-                    <td class="font-medium text-sm px-4 py-2">
+                    <!-- <td class="font-medium text-sm px-4 py-2">
                         <span style="color: #8576FF">{{ email._id }}</span>
+                    </td> -->
+                    <td class="font-medium text-sm px-4 py-2">
+                        <a style="color: #8576FF" [routerLink]="['/email', email._id]">{{ email._id }}</a>
                     </td>
-                    
 
                     <td class="px-2 py-2  font-semibold text-black">{{ email.from }}</td>
                     <td class="px-2 py-2  font-semibold text-black">{{ email.to }}</td>
 
                     <td class="px-2 py-2 text-sm">{{ email.external_id }}</td> <!-- Reduced padding and font size -->
                     <td class="px-6 py-4 font-medium text-black">
-                        <span [ngClass]="{'bg-green-200 p-2 rounded-lg': email.status === 'sent', 'bg-yellow-200 p-2 rounded-lg': email.status !== 'sent'}">{{ email.status }}</span>
+                        <div class="flex items-center">
+                            <div class="h-2.5 w-2.5 rounded-full {{ email.status === 'send' ? 'bg-green-500' : 'bg-red-500' }} me-2"></div>
+                            <span>{{ email.status === 'send' ? 'send' : 'not send' }}</span>
+                        </div>
                     </td>
+                    
+                  
                     
                     
 
                     <td class="px-4 py-2 font-medium text-black">{{ email.try }}</td>
-                    <td class="px-2 py-2 text-sm text-sm">{{ email.createdAt |  date: 'medium'}}</td> <!-- Reduced padding and font size -->
-                    <td class="px-4 py-2">{{ email.updatedAt |  date: 'medium' }}</td>
+                    <td class="px-2 py-2 text-sm">{{ email.createdAt |  date: 'medium'}}</td> <!-- Reduced padding and font size -->
+                    <td class="px-4 py-2 text-sm ">{{ email.updatedAt |  date: 'medium' }}</td>
                 </tr>
                 
 

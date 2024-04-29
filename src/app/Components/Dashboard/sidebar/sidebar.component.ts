@@ -9,13 +9,23 @@ import { Router } from '@angular/router';
 export class SidebarComponent implements OnInit {
   constructor(private router: Router) { }
   ngOnInit() {
-    if (!localStorage.getItem('jwt')) {
+    // Check if localStorage is available before accessing it
+    if (typeof localStorage !== 'undefined' && !localStorage.getItem('jwt')) {
       // Redirect to login form
       this.router.navigate(['/login']);
     }
   }
 
-  navigateToTierPage() {
+  navigateToCampaignPage() {
     this.router.navigate(['/createCampaign']);
+  }
+
+
+  logout() {
+    // Remove JWT token from localStorage
+    localStorage.removeItem('jwt');
+
+    // Redirect to login page
+    this.router.navigate(['/login']);
   }
 }

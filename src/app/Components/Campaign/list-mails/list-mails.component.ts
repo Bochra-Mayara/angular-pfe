@@ -1,5 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { MailService } from '../../../Services/mailService/mail.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-list-mails',
@@ -14,33 +17,18 @@ export class ListMailsComponent implements OnInit{
   totalItems = 0;
 
 
-  constructor(private http: HttpClient) { }
-
+  constructor(private http: HttpClient, private mailService: MailService, private router: Router) { }
+   navigateToDetail(id: string) {
+        this.router.navigate(['/email', id]);
+    }
   ngOnInit(): void {
     this.loadEmails();
   }
-  getToken(): string | null {
-    if (typeof localStorage !== 'undefined') {
-      return localStorage.getItem('jwt');
-    } else {
-      console.error('localStorage is not available.');
-      return null;
-    }
-  }
+  
   
   
   loadEmails(): void {
-    const token = this.getToken();
-    if (!token) {
-      console.error('Token not found in localStorage');
-      return;
-    }
-  
-    const headers = {
-      Authorization: `Bearer ${token}`
-    };
-  
-    this.http.get<any[]>('/api/v1/mailService/allEmails', { headers }).subscribe(
+    this.mailService.findAllMail().subscribe(
       emails => {
         this.emails = emails;
         this.totalItems = this.emails.length;
@@ -50,7 +38,6 @@ export class ListMailsComponent implements OnInit{
       }
     );
   }
-  
 
 
   getPaginatedEmails(): any[] {

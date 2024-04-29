@@ -18,6 +18,10 @@ import { ProfileComponent } from './Components/profile/profile.component';
 import { ListMailsComponent } from './Components/Campaign/list-mails/list-mails.component';
 import { SendMailComponent } from './Components/Campaign/send-mail/send-mail.component';
 import { CreateCampaignComponent } from './Components/Campaign/create-campaign.component';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { ToastrModule } from 'ngx-toastr';
+import { EmailDetailComponent } from './Components/Campaign/email-detail/email-detail.component';
+
 
 
 
@@ -35,6 +39,8 @@ import { CreateCampaignComponent } from './Components/Campaign/create-campaign.c
       SendMailComponent,
       CreateCampaignComponent,
      ListMailsComponent,
+     EmailDetailComponent,
+ 
      
    
   ],
@@ -43,6 +49,8 @@ import { CreateCampaignComponent } from './Components/Campaign/create-campaign.c
     AppRoutingModule,
     NgbModule,ReactiveFormsModule
     ,FormsModule,HttpClientModule,
+    NgSelectModule,
+    ToastrModule.forRoot(),
   ],
   providers: [
     provideClientHydration()
